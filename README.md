@@ -2,12 +2,12 @@
 
 `greg` is a simple module to let you generate (probably) unique, memorable ids in Node.js applications.
 
-It creates sentences on the form count + adjective + noun + verb + adverb, as described in [this Aptana blog post](http://asana.com/2011/09/6-sad-squid-snuggle-softly/ "6 sad squids snuggle softly") by Greg Slovacek, whom this module is named after.
+It creates sentences on the form count + adjective + noun + verb + adverb, as described in [this Asana blog post](http://asana.com/2011/09/6-sad-squid-snuggle-softly/ "6 sad squids snuggle softly") by Greg Slovacek, whom this module is named after.
 
 Disclaimer: I wrote this in a fit of insomnia late at night after reading the above blog post. Accordingly, it's probably chock-full of bugs and there are too few words. Pull requests are welcome.
 
 ## Version
-0.0.1
+0.0.2
 
 ## Requirements
 - [Node](http://github/ry/node)
