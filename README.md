@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/linus/greg.png)](http://travis-ci.org/linus/greg)
 # Greg: Create unique, memorable ids in Node.js
 
 `greg` is a simple module to let you generate (probably) unique, memorable ids in Node.js applications.
