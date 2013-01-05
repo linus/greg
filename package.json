@@ -4,6 +4,7 @@
     "version": "0.0.2",
     "author": "Linus G Thiel <linus@hanssonlarsson.se>",
     "contributors": [
+        "Joshua S. Weinstein <http://github.com/josher19>"
     ],
     "dependencies": {},
     "keywords": ["word", "id", "generator", "error code"],
