@@ -94,9 +94,12 @@ exports.fromId = function(targetId) {
     return phrase;
 };
 
-// Confirm that Greg sentence corresponds to id
+// Confirm that Greg sentence is valid and corresponds to optional id
 exports.confirm = function(sentence, id) {
-    return exports.parse(sentence) === id;
+    if (null == id) {
+        id = exports.parse(sentence);
+    }
+    return exports.parse(sentence) === id && exports.fromId(id) === sentence;
 };
 
 // English adjectives
