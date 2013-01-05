@@ -8,7 +8,7 @@ exports.sentence = function sentence() {
         return array[random(array.length)];
     }
 
-    var count       = random(33) + 2,
+    var count       = random(32) + 2,
         adjective   = randomItem(exports.adjectives),
         noun        = randomItem(exports.nouns),
         verb        = randomItem(exports.verbs),
