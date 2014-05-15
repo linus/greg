@@ -71,10 +71,11 @@ exports.verbs = [
     "sang", "played", "knitted", "floundered", "danced", "played", "listened", "ran",
     "talked", "cuddled", "sat", "kissed", "hugged", "whimpered", "hid", "fought",
     "whispered", "cried", "snuggled", "walked", "drove", "loitered", "whimpered", "felt",
-    "jumped", "hopped", "went", "married", "engaged", 
+    "jumped", "hopped", "went", "married", "engaged"
 ];
 
 // English adverbs
 exports.adverbs = [
-    "jovially", "merrily", "cordially", "easily"
+    "jovially", "merrily", "cordially", "easily", "carefully", "correctly",
+    "eagerly", "easily", "fast", "loudly", "patiently", "quickly", "quietly"
 ];
