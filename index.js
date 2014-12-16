@@ -1,3 +1,5 @@
+"use strict";
+
 // Generate a Greg sentence
 exports.sentence = function sentence() {
     function random(max) {
@@ -8,7 +10,7 @@ exports.sentence = function sentence() {
         return array[random(array.length)];
     }
 
-    var count       = random(33) + 2,
+    var count       = random(32) + 2,
         adjective   = randomItem(exports.adjectives),
         noun        = randomItem(exports.nouns),
         verb        = randomItem(exports.verbs),
@@ -26,8 +28,8 @@ exports.parse = function parse(sentence) {
         adverbFactor = verbFactor * exports.verbs.length,
         count = parseInt(words[0], 10),
         adjective = exports.adjectives.indexOf(words[1]),
-        noun = exports.nouns.indexOf(words[2])
-        verb = exports.verbs.indexOf(words[3])
+        noun = exports.nouns.indexOf(words[2]),
+        verb = exports.verbs.indexOf(words[3]),
         adverb = exports.adverbs.indexOf(words[4]);
 
     return count + 
@@ -35,6 +37,69 @@ exports.parse = function parse(sentence) {
         noun * nounFactor +
         verb * verbFactor +
         adverb * adverbFactor;
+};
+
+// Generate a Greg sentence from an id. 
+// Inverse of parse: greg.parse(greg.fromId(id)) === id for valid ids.
+// Valid range for ids is currently roughly between -5549438 and 22197761.
+// Warning: ids change if you change the number of adjectives, nouns, or verbs.
+exports.fromId = function(targetId) {
+    var     adjectiveFactor = 32,
+            nounFactor = adjectiveFactor * exports.adjectives.length,
+            verbFactor = nounFactor * exports.nouns.length,
+            adverbFactor = verbFactor * exports.verbs.length,
+            id = targetId - 2,
+            adverb = 0,
+            verb = 0,
+            noun = 0,
+            adjective = 0,
+            count = 0,
+            phrase = "",
+            limit = exports.adverbs.length - 1;
+            
+    adverb = Math.floor(id / adverbFactor);
+
+    if (adverb > limit) {
+        if (typeof console === "object" && console.warn) {
+            console.warn("Over the limit", id, count, adverb);
+        }
+        count += (adverb - limit - 1)*adverbFactor + (id % adverbFactor) + 1 ;
+        adverb = limit;
+        id -= count;
+        // console.log(id, count, adverb)
+    }
+
+    id -= adverb * adverbFactor;
+
+    verb = Math.floor(id / verbFactor);
+    id -= verb * verbFactor;
+
+    noun = Math.floor(id / nounFactor);
+    id -= noun * nounFactor;
+
+    adjective = Math.floor(id / adjectiveFactor);
+    id -= adjective * adjectiveFactor;
+
+    count += id + 2;
+
+    phrase = [count, exports.adjectives[adjective], exports.nouns[noun], exports.verbs[verb], exports.adverbs[adverb]].join(" ");
+
+    if (typeof console === "object" && console.warn) {
+        id = exports.parse(phrase);
+        if (id !== targetId) {
+            console.warn("does not match targetId", targetId, "!==", id);
+        }
+    }
+
+    return phrase;
+};
+
+// Confirm that Greg sentence is valid and corresponds to optional id
+exports.confirm = function(sentence, id) {
+    if (null == id) {
+        id = exports.parse(sentence);
+    }
+    return exports.parse(sentence) === id && exports.fromId(id) === sentence;
 };
 
 // English adjectives

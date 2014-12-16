@@ -1,9 +1,10 @@
 {
     "name": "greg",
     "description": "Unique, memorable ids for your Node app",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "Linus G Thiel <linus@hanssonlarsson.se>",
     "contributors": [
+        "Joshua S. Weinstein <http://github.com/josher19>"
     ],
     "dependencies": {},
     "keywords": ["word", "id", "generator", "error code"],
