@@ -1,5 +1,4 @@
-const fs = require("fs");
-var corpora = require("corpora-project");
+const corpora = require("corpora-project");
 
 exports.config = { maxCount: 100, separator: "-" };
 
