@@ -15,37 +15,36 @@ exports.sentence = function sentence() {
   if (exports.config.maxCount <= 2)
     throw new Error("maxCount must be greater than 2");
 
-  var count = random(exports.config.maxCount - 2) + 2,
-    adjective = randomItem(exports.adjectives),
-    noun = randomItem(exports.nouns),
-    verb = randomItem(exports.verbs),
-    adverb = randomItem(exports.adverbs);
+  var count     = random(exports.config.maxCount - 2) + 2,
+      adjective = randomItem(exports.adjectives),
+      noun      = randomItem(exports.nouns),
+      verb      = randomItem(exports.verbs),
+      adverb    = randomItem(exports.adverbs);
 
-  const result = [count, adjective, noun, verb, adverb].join(
-    exports.config.separator
-  );
-  return result.toLowerCase();
+  return [count, adjective, noun, verb, adverb]
+    .join(exports.config.separator)
+    .toLowerCase();
 };
 
 // Parse a Greg sentence and return it's corresponding id
 exports.parse = function parse(sentence) {
   var words = sentence.split(exports.config.separator),
     adjectiveFactor = 32,
-    nounFactor = adjectiveFactor * exports.adjectives.length,
-    verbFactor = nounFactor * exports.nouns.length,
-    adverbFactor = verbFactor * exports.verbs.length,
-    count = parseInt(words[0], 10),
-    adjective = exports.adjectives.indexOf(words[1]),
-    noun = exports.nouns.indexOf(words[2]);
-  verb = exports.verbs.indexOf(words[3]);
-  adverb = exports.adverbs.indexOf(words[4]);
+    nounFactor      = adjectiveFactor * exports.adjectives.length,
+    verbFactor      = nounFactor * exports.nouns.length,
+    adverbFactor    = verbFactor * exports.verbs.length,
+    count           = parseInt(words[0], 10),
+    adjective       = exports.adjectives.indexOf(words[1]),
+    noun            = exports.nouns.indexOf(words[2]),
+    verb            = exports.verbs.indexOf(words[3]),
+    adverb          = exports.adverbs.indexOf(words[4]);
 
   return (
-    count +
+    count                       +
     adjective * adjectiveFactor +
-    noun * nounFactor +
-    verb * verbFactor +
-    adverb * adverbFactor
+    noun      * nounFactor      +
+    verb      * verbFactor      +
+    adverb    * adverbFactor
   );
 };
 
