@@ -1,15 +1,28 @@
 {
-    "name": "greg",
-    "description": "Unique, memorable ids for your Node app",
-    "version": "0.0.2",
-    "author": "Linus G Thiel <linus@hanssonlarsson.se>",
-    "contributors": [
-    ],
-    "dependencies": {},
-    "keywords": ["word", "id", "generator", "error code"],
-    "engines": { "node": ">= 0.2.0" },
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/linus/greg.git"
-    }
+  "name": "greg",
+  "description": "Unique, memorable ids for your Node app",
+  "version": "0.0.2",
+  "author": "Linus G Thiel <linus@hanssonlarsson.se>",
+  "contributors": [
+    "Ariel Benichou <videojr3000@gmail.com>"
+  ],
+  "keywords": [
+    "word",
+    "id",
+    "generator",
+    "error code"
+  ],
+  "engines": {
+    "node": ">= 0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/linus/greg.git"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^27.2.0"
+  }
 }
