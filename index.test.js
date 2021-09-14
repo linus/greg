@@ -1,4 +1,4 @@
-const greg = require("./index.js");
+const fluffy = require("./index");
 
 describe("uniqueness of million ids", () => {
   const size = 1000000;
@@ -7,7 +7,7 @@ describe("uniqueness of million ids", () => {
   for (let i = 0; i < 3; i++) {
     const list = [];
     for (let j = 0; j < size; j++) {
-      list.push(greg.sentence());
+      list.push(fluffy.generate());
     }
     smallestSetSize = Math.min(new Set(list).size, smallestSetSize);
   }

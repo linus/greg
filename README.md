@@ -1,16 +1,14 @@
-# Greg: Create unique, memorable ids in Node.js
+# Fluffy IDs
 
-`greg` is a simple module to let you generate (probably\*) unique, memorable ids in Node.js applications.
+Fluffy and fun IDs for humans.
 
-\*_tested to generate a million unique ids_
+Example: *55-fluffy-mushroom-dancing-happily*
 
-It creates sentences on the form count + adjective + noun + verb + adverb, as described in [this Asana blog post](http://blog.asana.com/2011/09/6-sad-squid-snuggle-softly/ "6 sad squids snuggle softly") by Greg Slovacek, whom this module is named after.
-
-Disclaimer: I wrote this in a fit of insomnia late at night after reading the above blog post. Accordingly, it's probably chock-full of bugs and there are too few words. Pull requests are welcome.
+The full id form is of: `<count>-<adjective>-<noun>-<verb>-<adverb>`
 
 ## Version
 
-0.0.3
+0.1.0
 
 ## Requirements
 
@@ -20,53 +18,28 @@ Disclaimer: I wrote this in a fit of insomnia late at night after reading the ab
 
 Via npm:
 
-    npm install greg
+    npm install fluffy-ids
 
 ## Usage
 
-    var greg = require("greg");
-    sentence = greg.sentence();
-
-    console.log("The sentence \"%s\" corresponds to the id %d", sentence, greg.parse(sentence));
+    const fluffy = require("fluffy-ids");
+    id = fluffy.generate();
 
 ### Config
 
 Change the props on the config object:
 
-    var greg = require("greg");
-    greg.config.separator = "~";
+    const fluffy = require("fluffy-ids");
+    fluffy.config.separator = "~";
 
+- `maxCount` - the max number to precede the id (as in 55-fluffy-mushroom-dancing-happily)
+- `separator` -  the separator between each word. defaults to "-"
+- `withNumber` - defaults to `true`, if `false` removes the number at the start of the id (as in fluffy-mushroom-dancing-happily)
+- `isShort` - defaults to `false`, if `true` removes the verb and adverb from the id (as in 55-fluffy-mushroom)
+- `funMode` - defaults to `false`, if `true` uses only animals for the noun and only encouraging words for the adjective (as in 11-stunning-mandrill-killed-eventually).
+
+Please note that changing `withNumber`, `isShort`, `funMode` reduce the number of unique ids we can generate - mathematically speaking.
 ## Credits
-
-Linus G Thiel &lt;linus@hanssonlarsson.se&gt;
+This is forked form [this](https://github.com/linus/greg) repo.
 
 Ariel Benichou &lt;videojr3000@gmail.com&gt;
-
-## Thank you
-
-Greg Slovacek
-
-## License
-
-(The MIT License)
-
-Copyright (c) 2010 Hansson &amp; Larsson &lt;info@hanssonlarsson.se&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

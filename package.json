@@ -1,16 +1,17 @@
 {
-  "name": "greg",
-  "description": "Unique, memorable ids for your Node app",
-  "version": "0.0.3",
-  "author": "Linus G Thiel <linus@hanssonlarsson.se>",
+  "name": "fluffy-ids",
+  "description": "Fluffy and fun IDs for humans",
+  "version": "0.1.0",
+  "author": "Ariel Benichou <videojr3000@gmail.com>",
   "contributors": [
-    "Ariel Benichou <videojr3000@gmail.com>"
   ],
   "keywords": [
     "word",
     "id",
     "generator",
-    "error code"
+    "error code",
+    "funny",
+    "human readable"
   ],
   "engines": {
     "node": ">= 0.2.0"
