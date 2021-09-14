@@ -6,6 +6,9 @@ Example: *55-fluffy-mushroom-dancing-happily*
 
 The full id form is of: `<count>-<adjective>-<noun>-<verb>-<adverb>`
 
+Tested to have 99% unique ids out of 10 million generated.
+Best not to count on it if you need lots of uuid.
+
 ## Version
 
 0.1.0
