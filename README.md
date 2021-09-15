@@ -9,9 +9,22 @@ The full id form is of: `<count>-<adjective>-<noun>-<verb>-<adverb>`
 Tested to have 99% unique ids out of 10 million generated.
 Best not to count on it if you need lots of uuid.
 
+# Sample
+Here 10 random ids this lib generated:
+
+* 67-altruistic-opposition-groaned-mechanically
+* 18-impassive-advertisement-harmed-knowingly
+* 55-succeeding-tavern-bubbled-soon
+* 7-theistic-retention-blinded-annually
+* 9-problem-radiance-hovered-regularly
+* 38-guaranteed-inauguration-zoomed-questioningly
+* 20-filling-allocation-tempted-frenetically
+* 75-monarch-radiance-presented-swiftly
+* 89-sunset-redundancy-treated-enormously
+* 64-mixed-embodiment-sawed-commonly
 ## Version
 
-0.1.0
+0.1.1
 
 ## Requirements
 
@@ -24,10 +37,15 @@ Via npm:
     npm install fluffy-ids
 
 ## Usage
+require syntax:
 
     const fluffy = require("fluffy-ids");
     id = fluffy.generate();
 
+es6 syntax:
+
+    import * as fluffy from "fluffy-ids";
+    id = fluffy.generate();
 ### Config
 
 Change the props on the config object:
