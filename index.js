@@ -32,6 +32,7 @@ exports.generate = function generate() {
   return [count, adjective, noun, verb, adverb]
     .filter(el=>el)
     .join(exports.config.separator)
+    .replace(/ /g, exports.config.separator)
     .toLowerCase();
 };
 
