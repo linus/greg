@@ -2,6 +2,7 @@
   "name": "fluffy-ids",
   "description": "Fluffy and fun IDs for humans",
   "version": "0.1.1",
+  "license": "MIT",
   "author": "Ariel Benichou <videojr3000@gmail.com>",
   "contributors": [
   ],
@@ -20,6 +21,7 @@
     "type": "git",
     "url": "https://github.com/ArielBenichou/fluffy-ids"
   },
+  "homepage": "https://github.com/ArielBenichou/fluffy-ids#readme",
   "scripts": {
     "test": "jest"
   },
