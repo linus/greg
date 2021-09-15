@@ -1,12 +1,49 @@
 const corpora = require("corpora-project");
 
-exports.config = {
+const config = {
   maxCount:   100,
   separator:  "-",
-  withNumber: true,
-  isShort: false,
-  funMode: false,
+  template: ["count", "adjective", "noun", "verb", "adverb"]
 };
+
+function loadWords(path, accessor=null) {
+  return corpora.getFile(...path)[accessor || path.slice(-1)];
+}
+
+exports.setMaxCount = (maxCount) => config.maxCount = maxCount;
+exports.setSeparator = (separator) => config.separator = separator;
+exports.setTemplate = (template) => config.template = template;
+exports.setMode = (mode) => {
+  switch (mode) {
+    case "fun":
+      config.template = [
+        "count",
+        "animal",
+        "encouraging_word",
+        "verb",
+        "adverb",
+      ];
+      break;
+    case "dino":
+      config.template = [
+        "prefix",
+        "dinosaur",
+      ];
+      break;
+    case "vanilla":
+    default:
+      config.template = [
+        "count",
+        "adjective",
+        "noun",
+        "verb",
+        "adverb",
+      ];
+      break;
+  }
+};
+
+
 
 // Generate a Fluffy ID
 exports.generate = function generate() {
@@ -18,39 +55,44 @@ exports.generate = function generate() {
     return array[random(array.length)];
   }
 
-  const { maxCount, withNumber, isShort } = exports.config;
+  const { maxCount, template, separator } = config;
 
   if (maxCount <= 2)
     throw new Error("maxCount must be greater than 2");
 
-  var count     = withNumber ? random(maxCount - 2) + 2 : null,
-      adjective = randomItem(exports.adjectives()),
-      noun      = randomItem(exports.nouns()),
-      verb      = isShort ? null : randomItem(exports.verbs()),
-      adverb    = isShort ? null : randomItem(exports.adverbs());
+  const words = template.map((el) => {
+    switch (el) {
+      case "count":
+        return random(maxCount - 2) + 2;
+      case "adjective":
+        return randomItem(loadWords(["words", "adjs"]));
+      case "noun":
+        return randomItem(loadWords(["words", "nouns"]));
+      case "verb":
+        return randomItem(
+          loadWords(["words", "verbs"]).map((verb) => verb.past)
+        );
+      case "adverb":
+        return randomItem(loadWords(["words", "adverbs"]));
+      case "encouraging_word":
+        return randomItem(loadWords(["words", "encouraging_words"]));
+      case "animal":
+        return randomItem(loadWords(["animals", "common"], "animals"));
+      case "prefix":
+        return randomItem(loadWords(["humans", "prefixes"]));
+      case "dinosaur":
+        return randomItem(loadWords(["animals", "dinosaurs"]));
+      default:
+        return null;
+    }
+  });
 
-  return [count, adjective, noun, verb, adverb]
+  return words
     .filter(el=>el)
-    .join(exports.config.separator)
-    .replace(/ /g, exports.config.separator)
+    .join(separator)
+    .replace(/\./g, "")
+    .replace(/ /g, separator)
     .toLowerCase();
 };
 
-// English adjectives
-exports.adjectives = () =>
-  exports.config.funMode
-    ? corpora.getFile("words", "encouraging_words")["encouraging_words"]
-    : corpora.getFile("words", "adjs").adjs;
-
-// English nouns
-exports.nouns = () => exports.config.funMode
-  ? corpora.getFile("animals", "common").animals
-  : corpora.getFile("words", "nouns").nouns;
-
-// English verbs, past
-exports.verbs = () => corpora
-  .getFile("words", "verbs")
-  .verbs.map((verb) => verb.past);
-
-// English adverbs
-exports.adverbs = () => corpora.getFile("words", "adverbs").adverbs;
+console.log(exports.generate());
