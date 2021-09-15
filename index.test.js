@@ -1,6 +1,6 @@
 const fluffy = require("./index");
 
-describe("uniqueness of million ids", () => {
+describe("uniqueness of a million ids", () => {
   const size = 1000000;
   let smallestSetSize = size;
   // we generate size new ids 3 times and take the worst case
@@ -42,6 +42,6 @@ describe("uniqueness of million ids", () => {
   });
   test("100% unique ids", () => {
     const factor = 1;
-    expect(smallestSetSize).toBeGreaterThanOrEqual(size * factor);
+    expect(smallestSetSize).toBe(size * factor);
   });
 });
