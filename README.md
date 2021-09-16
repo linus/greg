@@ -1,59 +1,73 @@
-# Greg: Create unique, memorable ids in Node.js
+# Fluffy IDs
 
-`greg` is a simple module to let you generate (probably) unique, memorable ids in Node.js applications.
+Fluffy and fun IDs for humans.
 
-It creates sentences on the form count + adjective + noun + verb + adverb, as described in [this Asana blog post](http://blog.asana.com/2011/09/6-sad-squid-snuggle-softly/ "6 sad squids snuggle softly") by Greg Slovacek, whom this module is named after.
+Example: *55-fluffy-mushroom-dancing-happily*
 
-Disclaimer: I wrote this in a fit of insomnia late at night after reading the above blog post. Accordingly, it's probably chock-full of bugs and there are too few words. Pull requests are welcome.
+The full id form is of: `<count>-<adjective>-<noun>-<verb>-<adverb>`
 
+Tested to have 99% unique ids out of 10 million generated.
+Best not to count on it if you need lots of uuid.
+
+## Sample
+Here 10 random ids this lib generated:
+
+* 67-altruistic-opposition-groaned-mechanically
+* 18-impassive-advertisement-harmed-knowingly
+* 55-succeeding-tavern-bubbled-soon
+* 7-theistic-retention-blinded-annually
+* 9-problem-radiance-hovered-regularly
+* 38-guaranteed-inauguration-zoomed-questioningly
+* 20-filling-allocation-tempted-frenetically
+* 75-monarch-radiance-presented-swiftly
+* 89-sunset-redundancy-treated-enormously
+* 64-mixed-embodiment-sawed-commonly
 ## Version
-0.0.2
+
+1.0.0
 
 ## Requirements
+
 - [Node](http://github/ry/node)
 
 ## Installation
 
 Via npm:
 
-    npm install greg
+    npm install fluffy-ids
 
 ## Usage
+require syntax:
 
-    var greg = require("greg"),
-        sentence = greg.sentence();
+    const fluffy = require("fluffy-ids");
+    id = fluffy.generate();
 
-    console.log("The sentence \"%s\" corresponds to the id %d", sentence, greg.parse(sentence));
+es6 syntax:
+
+    import * as fluffy from "fluffy-ids";
+    id = fluffy.generate();
+### Config
+
+on the exported object we have some function to change the inner config of the generator:
+ - `setMaxCount` - set the max number to precede the id (as in 55-fluffy-mushroom-dancing-happily)
+- `setSeparator` -  set the separator between each word. defaults to "-"
+- `setMode` - defaults to `vanilla`.
+    - `fun` uses only animals for the noun and only encouraging-words for the adjective (as in 11-stunning-mandrill-killed-eventually).
+    - `dino` produce ids of the form: `<prefix>-<dino>` (as in rabbi-achillobator).
+- `setTemplate` - set a custom template for the generator. this function expects an array of string, each string will be transformed to one of the words in this category. the categories is as follow:
+    - `count` - a number from 2 to maxCount (100 by default)
+    - `noun` - a noun from all the nouns in english
+    - `verb` - a verb from all the verbs in english
+    - `adjective` - an adjective from all the adjectives in english
+    - `adverb` - an adverb from all the adverbs in english
+    - `animal` - an animal name from all the common animals
+    - `dinosaur` - a dinosaur name
+    - `encouraging_word` - an encouraging word
+    - `prefix` - a prefix like (e.g. mr, mme, lord, etc...)
+
+Please note that changing the longer the template the more - mathematically speaking - we can generate uniques ids.
 
 ## Credits
+This is forked form [this](https://github.com/linus/greg) repo.
 
-Linus G Thiel &lt;linus@hanssonlarsson.se&gt;
-
-## Thank you
-
-Greg Slovacek
-
-## License 
-
-(The MIT License)
-
-Copyright (c) 2010 Hansson &amp; Larsson &lt;info@hanssonlarsson.se&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Ariel Benichou &lt;videojr3000@gmail.com&gt;
